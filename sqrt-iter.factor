@@ -2,7 +2,7 @@
 ! http://mitpress.mit.edu/sicp/full-text/book/book-Z-H-10.html#%_sec_1.1.7
 
 : close-enough ( n m -- bool )
-- abs .001 < ;
+sq - abs .001 < ;
 
 : avg ( n m -- a )
 + 2 / ;
