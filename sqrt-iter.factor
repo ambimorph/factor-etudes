@@ -11,7 +11,7 @@ sq - abs .001 < ;
 [ / ] keep avg ;
 
 : sqrt-iter ( m n -- a )
-dup close-enough
-    [ [ drop ] keep ]
-    [ [ improve ] keep sqrt-iter ]
-    if ; inline recursive
+2dup close-enough
+    [ [ drop ] dip ]
+    [ [ dup ] dip improve sqrt-iter ]
+    if ;
