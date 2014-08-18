@@ -15,3 +15,6 @@ sq - abs .001 < ;
     [ [ drop ] dip ]
     [ [ dup ] dip improve sqrt-iter ]
     if ;
+
+: my-sqrt ( n -- m )
+1.0 sqrt-iter ;
