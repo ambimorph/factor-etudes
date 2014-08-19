@@ -8,22 +8,22 @@ IN: sqrt-iter
     dup * ;
 
 : close-enough ( n m -- bool )
-my-sq - abs .001 < ;
+    my-sq - abs .001 < ;
 
 : avg ( n m -- a )
-+ 2 / ;
+    + 2 / ;
 
 : improve ( n m -- a )
-[ / ] keep avg ;
+    [ / ] keep avg ;
 
 : sqrt-iter ( m n -- a )
-2dup close-enough
+    2dup close-enough
     [ nip ]
     [ [ dup ] dip improve sqrt-iter ]
     if ;
 
 : my-sqrt ( n -- m )
-1.0 sqrt-iter ;
+    1.0 sqrt-iter ;
 
 [ 3.00009155413138 ] [ 9 my-sqrt ] unit-test
 [ 11.704699917758145 ] [ 100 37 + my-sqrt ] unit-test
