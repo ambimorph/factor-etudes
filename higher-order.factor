@@ -9,7 +9,7 @@ IN: higher-order
 
 : sum  ( a quot quot b -- n )
     greater-than-3-back
-    [ 3 nnip ]
+    [ 4drop 0 ]
     [
         [ [ bi ] 2keep ] dip sum +
     ] if ; inline
@@ -21,4 +21,4 @@ IN: higher-order
     dup dup * * ;
 
 
-[ 3035 ] [ 1 [ cube ] [ inc ] 10 sum ] unit-test
+[ 3025 ] [ 1 [ cube ] [ inc ] 10 sum ] unit-test
