@@ -17,8 +17,17 @@ IN: higher-order
 : inc ( n -- m )
     1 + ;
 
+[ 55 ] [ 1 [ ] [ inc ] 10 sum ] unit-test
+
 : cube ( n -- m )
     dup dup * * ;
 
-
 [ 3025 ] [ 1 [ cube ] [ inc ] 10 sum ] unit-test
+
+: pi-term ( x -- y )
+     dup 2 + * 1.0 swap / ;
+
+: pi-next ( x -- y )
+    4 + ;
+
+[ 3.139592655589783 ] [ 1 [ pi-term ] [ pi-next ] 1000 sum 8 * ] unit-test
