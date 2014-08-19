@@ -31,3 +31,14 @@ IN: higher-order
     4 + ;
 
 [ 3.139592655589783 ] [ 1 [ pi-term ] [ pi-next ] 1000 sum 8 * ] unit-test
+
+! average-damp example
+! http://mitpress.mit.edu/sicp/full-text/book/book-Z-H-12.html#%_sec_1.3.4
+
+: avg ( n m -- a )
++ 2 / ;
+
+: average-damp ( quot -- quot )
+    [ dup ] prepose [ avg ] compose ;
+
+[ 55 ] [ 10 [ sq ] average-damp call ] unit-test
