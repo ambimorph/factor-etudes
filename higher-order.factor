@@ -42,3 +42,22 @@ IN: higher-order
     [ dup ] prepose [ avg ] compose ;
 
 [ 55 ] [ 10 [ sq ] average-damp call ] unit-test
+
+
+! Exercise 1.46
+! Write a procedure iterative-improve that takes two procedures as
+! arguments: a method for telling whether a guess is good enough and a
+! method for improving a guess. Iterative-improve should return as its
+! value a procedure that takes a guess as argument and keeps improving
+! the guess until it is good enough.
+
+! : iterative-improve ( quot quot -- quot )
+
+
+: sqrt-good-enough ( x -- quot )
+    ! Takes the number x we are trying to sqrt, and returns a word that
+    ! takes a guess and returns whether or not it is good enough.
+
+    [ swap sq - abs .001 < ] curry ;
+
+[ t ] [ 3.0001 9 sqrt-good-enough call ] unit-test
