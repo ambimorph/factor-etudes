@@ -1,4 +1,4 @@
-USING: kernel math generalizations tools.test ;
+USING: kernel math generalizations tools.test sequences ;
 IN: higher-order
 
 ! The sum example from SICP: http://mitpress.mit.edu/sicp/full-text/book/book-Z-H-12.html#%_sec_1.3.1
@@ -51,8 +51,6 @@ IN: higher-order
 ! value a procedure that takes a guess as argument and keeps improving
 ! the guess until it is good enough.
 
-! : iterative-improve ( quot quot -- quot )
-
 : almost-equal ( x y -- bool )
     - abs .001 < ;
 
@@ -71,3 +69,16 @@ IN: higher-order
     [ swap [ / ] keep avg ] curry ;
 
 [ t ] [ 1.5 2 improve-sqrt call 1.4167 almost-equal ] unit-test
+
+: iterative-improve ( quot quot -- quot )
+    [ bi ] 3keep
+    [ ] 2sequence
+    [ iterative-improve ] append
+    [ [ ] 1sequence ] dip
+    [ swap ] dip
+    curry
+    if ; inline
+
+[ 3+131072/50862608363 ]
+[ 7 9 [ sqrt-good-enough ] [ improve-sqrt ] bi iterative-improve ]
+unit-test
