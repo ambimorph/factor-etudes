@@ -63,3 +63,11 @@ IN: higher-order
     [ swap sq almost-equal ] curry ;
 
 [ t ] [ 3.0001 9 sqrt-good-enough call ] unit-test
+
+: improve-sqrt ( x -- quote )
+    ! Takes the number x we are trying to sqrt, and returns a word
+    ! that averages a guess g with x / g.
+
+    [ swap [ / ] keep avg ] curry ;
+
+[ t ] [ 1.5 2 improve-sqrt call 1.4167 almost-equal ] unit-test
