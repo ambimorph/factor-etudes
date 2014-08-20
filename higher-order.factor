@@ -53,11 +53,13 @@ IN: higher-order
 
 ! : iterative-improve ( quot quot -- quot )
 
+: almost-equal ( x y -- bool )
+    - abs .001 < ;
 
 : sqrt-good-enough ( x -- quot )
     ! Takes the number x we are trying to sqrt, and returns a word that
     ! takes a guess and returns whether or not it is good enough.
 
-    [ swap sq - abs .001 < ] curry ;
+    [ swap sq almost-equal ] curry ;
 
 [ t ] [ 3.0001 9 sqrt-good-enough call ] unit-test
